@@ -25,11 +25,9 @@ DHT dht(DHTPIN, DHTTYPE);
 
 RtcDS3231<TwoWire> Rtc(Wire);
 
-// ECRAN ST7920 : Mode SW_SPI (Software SPI) forcé pour éliminer la ligne verticale
 U8G2_ST7920_128X64_F_SW_SPI u8g2(U8G2_R1, /* clock=*/ 18, /* data=*/ 23, /* CS=*/ 5, /* reset=*/ 14);
 Hide quoted text
 
-// BUZZER : Logique inversée (Active LOW)
 #define BUZZER_PIN 15
 #define BUZZER_ON LOW
 #define BUZZER_OFF HIGH
@@ -63,7 +61,7 @@ void gererBoutons();
 void afficherEcran();
 
 // ==========================================
-// PAGE WEB HTML (100% Hors-Ligne)
+// PAGE WEB HTML
 // ==========================================
 const char index_html[] PROGMEM = R"rawliteral(
 <!DOCTYPE html>
@@ -226,7 +224,7 @@ const char index_html[] PROGMEM = R"rawliteral(
     </div>
 
     <script>
-        // TRADUCTIONS ET NAVIGATION (Code existant inchangé)
+        // TRADUCTIONS ET NAVIGATION 
         const i18n = {
             'FR': { 'tab_overview': 'Aperçu', 'tab_settings': 'Réglages', 'tab_temp': 'Temp.', 'status_searching': 'Recherche...', 'status_connected': 'Connecté', 'status_error': 'Déconnecté', 'live_display': 'Affichage en direct', 'ambient_temp': 'Température ambiante', 'settings_title': 'Réglages', 'time_set': 'Heure & Date', 'sync_pc': 'Synchroniser l\'appareil', 'localization': 'Format & Langue', 'time_format': 'Format de l\'Heure', 'date_format_label': 'Format Date (LCD)', 'interface_lang': 'Langue', 'save_btn': 'Sauvegarder tout', 'temp_sensor': 'Capteur de Temp.', 'reading_live': 'Lecture en direct', 'force_read': 'Actualiser' },
             'EN': { 'tab_overview': 'Overview', 'tab_settings': 'Settings', 'tab_temp': 'Temp.', 'status_searching': 'Searching...', 'status_connected': 'Connected', 'status_error': 'Unreachable', 'live_display': 'Live Display', 'ambient_temp': 'Ambient Temp.', 'settings_title': 'Settings', 'time_set': 'Time & Date', 'sync_pc': 'Sync Device', 'localization': 'Format & Language', 'time_format': 'Time Format', 'date_format_label': 'LCD Date Format', 'interface_lang': 'Language', 'save_btn': 'Save All', 'temp_sensor': 'Temperature', 'reading_live': 'Live Reading', 'force_read': 'Refresh' },
@@ -525,7 +523,7 @@ void setup() {
 
   pinMode(BTN_MODE, INPUT_PULLUP); pinMode(BTN_MINUS, INPUT_PULLUP); pinMode(BTN_PLUS, INPUT_PULLUP);
 
-  // Initialisation du buzzer avec l'état de repos (SILENCE)
+  // Initialisation du buzzer avec l'état de repos
   pinMode(BUZZER_PIN, OUTPUT);
   digitalWrite(BUZZER_PIN, BUZZER_OFF); 
 
